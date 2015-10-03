@@ -1,16 +1,25 @@
 package com.saferoam.saferoam;
 
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
 import com.getpebble.android.kit.PebbleKit;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -56,27 +65,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        // Construct output String
-        StringBuilder builder = new StringBuilder();
-        builder.append("Pebble Info\n\n");
-
-        // Is the watch connected?
-        boolean isConnected = PebbleKit.isWatchConnected(this);
-        builder.append("Watch connected: " + (isConnected ? "true" : "false")).append("\n");
-
-        // What is the firmware version?
-        PebbleKit.FirmwareVersionInfo info = PebbleKit.getWatchFWVersion(this);
-        builder.append("Firmware version: ");
-        builder.append(info.getMajor()).append(".");
-        builder.append(info.getMinor()).append("\n");
-
-        // Is AppMesage supported?
-        boolean appMessageSupported = PebbleKit.areAppMessagesSupported(this);
-        builder.append("AppMessage supported: " + (appMessageSupported ? "true" : "false"));
-
-        TextView textView = (TextView)findViewById(R.id.text_view);
-        textView.setText(builder.toString());
 
     }
 }
